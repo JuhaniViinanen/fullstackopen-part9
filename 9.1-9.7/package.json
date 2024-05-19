@@ -4,14 +4,25 @@
   "description": "exercises 9.1-9.7 of fullstackopen",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "ts-node-dev index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts",
     "calculateBmi": "ts-node bmiCalculator.ts",
     "calculateExercises": "ts-node exerciseCalculator.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
+    "eslint": "^8.57.0",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   }
 }

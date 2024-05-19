@@ -21,13 +21,13 @@ const calculateExercisesparseargs = (args: string[]): calculateExercisesvalues =
         return {
             dailyHours: args.slice(3).map(arg => Number(arg)),
             target: Number(args[2])
-        }
+        };
     } else {
         throw new Error("Arguments were not numbers");
     }
-}
+};
 
-const calculateExercises = (dailyHours: number[], target: number): Result => {
+export const calculateExercises = (dailyHours: number[], target: number): Result => {
     const periodLength = dailyHours.length;
     const trainingDays = dailyHours.filter(h => h !== 0).length;
     const average = dailyHours.reduce((a, b) => a + b) / periodLength;
@@ -44,7 +44,7 @@ const calculateExercises = (dailyHours: number[], target: number): Result => {
     }
     else {
         rating = 3;
-        ratingDescription = "target amount reached good job"
+        ratingDescription = "target amount reached good job";
     }
     return {
         periodLength,
@@ -54,8 +54,8 @@ const calculateExercises = (dailyHours: number[], target: number): Result => {
         success,
         rating,
         ratingDescription
-    }
-}
+    };
+};
 
 try {
     const {dailyHours, target} = calculateExercisesparseargs(process.argv);
