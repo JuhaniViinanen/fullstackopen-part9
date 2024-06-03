@@ -45,7 +45,8 @@ export const toNewPatientEntry = (body: unknown): NewPatient => {
             ssn: parseString(body.ssn, "ssn"),
             dateOfBirth: parseDate(body.dateOfBirth, "dateOfBirth"),
             gender: parseGender(body.gender, "gender"),
-            occupation: parseString(body.occupation, "occupation")
+            occupation: parseString(body.occupation, "occupation"),
+            entries: [],
         };
         return newPatient;
     }
