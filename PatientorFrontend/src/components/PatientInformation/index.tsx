@@ -5,7 +5,7 @@ import patientService from "../../services/patients";
 import axios from "axios";
 import { Male, Female } from "@mui/icons-material";
 import { Gender } from "../../types";
-import PatientEntries from "./PatientEntries";
+import EntryDetails from "./EntryDetails";
 
 interface Props {
   diagnoses: Diagnosis[];
@@ -51,8 +51,15 @@ const PatientInformation = ({ diagnoses }: Props) => {
             {patient.dateOfBirth && <li>{`date of birth: ${patient.dateOfBirth}`}</li>}
             <li>{`occupation: ${patient.occupation}`}</li>
           </ul>
+          <h5>{"Entries"}</h5>
           {patient.entries.length !== 0 &&
-            <PatientEntries entries={patient.entries} diagnoses={diagnoses}/>
+            <ul style={{ listStyle: "none", paddingLeft: "0" }}>
+              {patient.entries.map(entry => (
+                <li key={entry.id}>
+                  <EntryDetails entry={entry} diagnoses={diagnoses} />
+                </li>
+              ))}
+            </ul>
           }
         </div>
       }
