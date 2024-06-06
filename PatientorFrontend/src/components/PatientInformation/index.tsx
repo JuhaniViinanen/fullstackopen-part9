@@ -1,13 +1,17 @@
 import { useState ,useEffect } from "react";
 import { useMatch } from "react-router-dom";
-import { Patient } from "../../types";
+import { Patient, Diagnosis } from "../../types";
 import patientService from "../../services/patients";
 import axios from "axios";
 import { Male, Female } from "@mui/icons-material";
 import { Gender } from "../../types";
 import PatientEntries from "./PatientEntries";
 
-const PatientInformation = () => {
+interface Props {
+  diagnoses: Diagnosis[];
+}
+
+const PatientInformation = ({ diagnoses }: Props) => {
   const [patient, setPatient] = useState<Patient>();
   const [error, setError] = useState("");
   const match = useMatch("/patients/:id");
@@ -47,7 +51,9 @@ const PatientInformation = () => {
             {patient.dateOfBirth && <li>{`date of birth: ${patient.dateOfBirth}`}</li>}
             <li>{`occupation: ${patient.occupation}`}</li>
           </ul>
-          {patient.entries.length !== 0 && <PatientEntries entries={patient.entries} />}
+          {patient.entries.length !== 0 &&
+            <PatientEntries entries={patient.entries} diagnoses={diagnoses}/>
+          }
         </div>
       }
     </div>

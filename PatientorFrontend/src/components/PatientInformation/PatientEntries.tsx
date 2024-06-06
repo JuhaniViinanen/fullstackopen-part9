@@ -1,10 +1,17 @@
-import { Entry } from "../../types";
+import { Entry, Diagnosis } from "../../types";
 
 interface Props {
-  entries: Entry[]
+  entries: Entry[];
+  diagnoses: Diagnosis[];
 }
 
-const PatientEntries = ({entries} : Props) => {
+const PatientEntries = ({entries, diagnoses} : Props) => {
+
+  const codeToDescription = (code: string) : string | undefined=> {
+    const diagnosis = diagnoses.find(d => d.code === code);
+    return diagnosis ? diagnosis.name : undefined;
+  };
+
   return (
     <div>
       <h5>{"Entries"}</h5>
@@ -16,7 +23,7 @@ const PatientEntries = ({entries} : Props) => {
               <ul style={{ listStyle: "initial" }}>
                 {entry.diagnosisCodes.map((diagcode: string) => (
                   <li key={diagcode}>
-                    {diagcode}
+                    {`${diagcode} ${codeToDescription(diagcode)}`}
                   </li>
                 ))}
               </ul>
