@@ -1,10 +1,11 @@
 import { useState ,useEffect } from "react";
 import { useMatch } from "react-router-dom";
-import { Patient } from "../types";
-import patientService from "../services/patients";
+import { Patient } from "../../types";
+import patientService from "../../services/patients";
 import axios from "axios";
 import { Male, Female } from "@mui/icons-material";
-import { Gender } from "../types";
+import { Gender } from "../../types";
+import PatientEntries from "./PatientEntries";
 
 const PatientInformation = () => {
   const [patient, setPatient] = useState<Patient>();
@@ -46,6 +47,7 @@ const PatientInformation = () => {
             {patient.dateOfBirth && <li>{`date of birth: ${patient.dateOfBirth}`}</li>}
             <li>{`occupation: ${patient.occupation}`}</li>
           </ul>
+          {patient.entries.length !== 0 && <PatientEntries entries={patient.entries} />}
         </div>
       }
     </div>
