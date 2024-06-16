@@ -40,7 +40,9 @@ const HospitalEntry = ({ entry, diagnoses } : Props) => {
       }
       <ul style={{ listStyle: "none", marginTop: "1em", paddingLeft: "0" }} >
         <li>{`Discharge date: ${entry.discharge.date}`}</li>
-        <li>{`Discharge criteria: ${entry.discharge.criteria}`}</li>
+        {entry.discharge.criteria && 
+          <li>{`Discharge criteria: ${entry.discharge.criteria}`}</li>
+        }
       </ul>
       <p>{`diagnose by ${entry.specialist}`}</p>
     </div>

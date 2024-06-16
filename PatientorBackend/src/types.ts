@@ -1,11 +1,11 @@
-// type BetterOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
+type BetterOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
 
-interface SickLeave {
+export interface SickLeave {
     startDate: string;
     endDate: string;
 }
 
-interface Discharge {
+export interface Discharge {
     date: string;
     criteria?: string;
 }
@@ -57,6 +57,7 @@ export interface Patient {
 
 export type PatientNonSensitive = Omit<Patient, "ssn" | "entries">;
 export type NewPatient = Omit<Patient, "id">;
+export type NewEntry = BetterOmit<Entry, "id">;
 
 export enum Gender {
     Male = "male",

@@ -1,6 +1,6 @@
 import express from "express";
 import patientService from "../services/patientService";
-import { toNewPatientEntry } from "../utils";
+import { toNewPatientEntry, toNewEntry } from "../utils";
 
 const router = express.Router();
 
@@ -24,6 +24,21 @@ router.post("/", (req, res) => {
         res.send(addedPatient);
     } catch (error: unknown) {
         let errorMessage = "Error in patient creation: ";
+        if (error instanceof Error) {
+            errorMessage += error.message;
+        }
+        res.status(400).send(errorMessage);
+    }
+});
+
+router.post("/:id/entries", (req, res) => {
+    try {
+        const newEntry = toNewEntry(req.body);
+        const patientId = req.params.id;
+        const addedEntry = patientService.addEntry(newEntry, patientId);
+        res.send(addedEntry);
+    } catch (error: unknown) {
+        let errorMessage = "Error in entry creation: ";
         if (error instanceof Error) {
             errorMessage += error.message;
         }

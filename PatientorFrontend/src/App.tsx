@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Route, Link, Routes } from "react-router-dom";
 import { Button, Divider, Container, Typography } from '@mui/material';
+import CssBaseline from "@mui/material/CssBaseline";
 
 import { apiBaseUrl } from "./constants";
 import { Patient, Diagnosis } from "./types";
@@ -31,6 +32,7 @@ const App = () => {
   
   return (
     <div className="App">
+      <CssBaseline />
       <Container>
         <Typography variant="h3" style={{ marginBottom: "0.5em" }}>
           Patientor
